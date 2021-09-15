@@ -1,0 +1,21 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"workspaceName": {
+			"value": "wrksyn1002"
+		},
+		"wrksyn1002-WorkspaceDefaultSqlServer_connectionString": {
+			"value": ""
+		},
+		"AzureDataLakeStorage1_properties_typeProperties_url": {
+			"value": "https://adlswrksyn1002.dfs.core.windows.net"
+		},
+		"AzureDataLakeStorage2_properties_typeProperties_url": {
+			"value": "https://adlswrksyn1002b.dfs.core.windows.net"
+		},
+		"wrksyn1002-WorkspaceDefaultStorage_properties_typeProperties_url": {
+			"value": "https://adlswrksyn1002.dfs.core.windows.net"
+		}
+	}
+}
