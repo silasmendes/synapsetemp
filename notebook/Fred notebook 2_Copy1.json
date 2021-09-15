@@ -1,0 +1,86 @@
+{
+	"name": "Fred notebook 2_Copy1",
+	"properties": {
+		"nbformat": 4,
+		"nbformat_minor": 2,
+		"bigDataPool": {
+			"referenceName": "sp1002",
+			"type": "BigDataPoolReference"
+		},
+		"sessionProperties": {
+			"driverMemory": "28g",
+			"driverCores": 4,
+			"executorMemory": "28g",
+			"executorCores": 4,
+			"numExecutors": 2,
+			"conf": {
+				"spark.dynamicAllocation.enabled": "false",
+				"spark.dynamicAllocation.minExecutors": "2",
+				"spark.dynamicAllocation.maxExecutors": "2"
+			}
+		},
+		"metadata": {
+			"saveOutput": true,
+			"synapse_widget": {
+				"version": "0.1"
+			},
+			"kernelspec": {
+				"name": "synapse_pyspark",
+				"display_name": "Synapse PySpark"
+			},
+			"language_info": {
+				"name": "python"
+			},
+			"a365ComputeOptions": {
+				"id": "/subscriptions/658f9f76-f34e-4696-8cb9-f8e36c139917/resourceGroups/rgwrksyn1002/providers/Microsoft.Synapse/workspaces/wrksyn1002/bigDataPools/sp1002",
+				"name": "sp1002",
+				"type": "Spark",
+				"endpoint": "https://wrksyn1002.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/sp1002",
+				"auth": {
+					"type": "AAD",
+					"authResource": "https://dev.azuresynapse.net"
+				},
+				"sparkVersion": "2.4",
+				"nodeCount": 3,
+				"cores": 4,
+				"memory": 28,
+				"extraHeader": null
+			}
+		},
+		"cells": [
+			{
+				"cell_type": "code",
+				"source": [
+					"spark.conf.set(\"spark.storage.synapse.linkedServiceName\", \"AzureDataLakeStorage2\") \r\n",
+					"spark.conf.set(\"fs.azure.account.oauth.provider.type\", \"com.microsoft.azure.synapse.tokenlibrary.LinkedServiceBasedTokenProvider\")\r\n",
+					"\r\n",
+					"df = spark.read.option(\"header\",\"true\").csv(\"abfss://container1@adlswrksyn1002b.dfs.core.windows.net/folder1/fileok.csv\")\r\n",
+					"df.cache()\r\n",
+					"df.write.parquet(\"abfss://container1@adlswrksyn1002b.dfs.core.windows.net/folder1/fileok7.parquet\")"
+				],
+				"attachments": null,
+				"execution_count": 1
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					},
+					"collapsed": true
+				},
+				"source": [
+					"df.write.saveAsTable(\"fileoktable3\")"
+				],
+				"attachments": null,
+				"execution_count": 7
+			}
+		]
+	}
+}
